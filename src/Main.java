@@ -3,7 +3,6 @@ import java.util.List;
 
 public class Main {
 
-
     public static void main(String[] args) {
         compare(1);
         compare(2);
@@ -13,7 +12,7 @@ public class Main {
 
     public static void compare(int day) {
         System.out.println("=== Day " + day + " ===");
-        int[] startNumbers = { 22, 3, 20, 25 };
+        int[] startNumbers = { 21, 1, 20, 23 };
         int iterative = chooseHobbyIterative(startNumbers, day);
         int recursive = chooseHobbyRecursive(startNumbers, day, new int[day]);
         System.out.println("Iterative = " + iterative + " | Recursive = " + recursive);
@@ -43,9 +42,9 @@ public class Main {
         numbers.add(startNumbers[3]);
 
         for (int d = 0; d < day; d++) {
-            int index = d + 4; // индексы дней в массиве сдвинуты на 4
-            int prev = numbers.get(index - 1); // предыдущее значение
-            int prePrePrev = numbers.get(index - 3); // пре-пре-предыдущее значение
+            int index = d + 4;
+            int prev = numbers.get(index - 1);
+            int prePrePrev = numbers.get(index - 3);
             numbers.add((prev * prePrePrev) % 10 + 1);
         }
 
