@@ -15,19 +15,25 @@ public class Main {
         System.out.println("=== Day " + day + " ===");
         int[] startNumbers = { 22, 3, 20, 25 };
         int iterative = chooseHobbyIterative(startNumbers, day);
-        int recursive = chooseHobbyRecursive(startNumbers, day);
+        int recursive = chooseHobbyRecursive(startNumbers, day, new int[day]);
         System.out.println("Iterative = " + iterative + " | Recursive = " + recursive);
         System.out.println();
     }
 
-    public static int chooseHobbyRecursive(int[] startNumbers, int day) {
+    public static int chooseHobbyRecursive(int[] startNumbers, int day, int[] memory) {
         if (day <= 0) {
             return startNumbers[3 + day];
         }
-        int prev = chooseHobbyRecursive(startNumbers, day - 1); // предыдущее значение
-        int prePrePrev = chooseHobbyRecursive(startNumbers, day - 3); // пре-пре-предыдущее значение
-        return (prev * prePrePrev) % 10 + 1;
+        if (memory[day - 1] != 0) {
+            return memory[day - 1];
+        }
+        int prev = chooseHobbyRecursive(startNumbers, day - 1, memory); // предыдущее значение
+        int prePrePrev = chooseHobbyRecursive(startNumbers, day - 3, memory); // пре-пре-предыдущее значение
+        int result = (prev * prePrePrev) % 10 + 1;
+        memory[day - 1] = result;
+        return result;
     }
+
 
     public static int chooseHobbyIterative(int[] startNumbers, int day) {
         List<Integer> numbers = new ArrayList<>();
