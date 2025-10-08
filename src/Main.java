@@ -12,7 +12,7 @@ public class Main {
 
     public static void compare(int day) {
         System.out.println("=== Day " + day + " ===");
-        int[] startNumbers = { 21, 1, 20, 23 };
+        int[] startNumbers = { 22, 3, 20, 25 };
         int iterative = chooseHobbyIterative(startNumbers, day);
         int recursive = chooseHobbyRecursive(startNumbers, day, new int[day]);
         System.out.println("Iterative = " + iterative + " | Recursive = " + recursive);
